@@ -321,7 +321,7 @@ function rotationsmatrixZ(winkel) {
 
 
 // Erstellt die Model-Matrix eines Objektes.
-//
+
 // Entsprechend der Lerneinheit TFM wird ein
 // Objekt zuerst skaliert, danach gedreht und
 // anschließend an seine Position verschoben.
