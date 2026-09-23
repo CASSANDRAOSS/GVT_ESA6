@@ -1,0 +1,289 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="420"
+    height="520"
+    viewBox="0 0 420 520"
+    role="img"
+    aria-labelledby="titel beschreibung"
+>
+
+    <title id="titel">
+        Reiseplan der vier Perlen
+    </title>
+
+    <desc id="beschreibung">
+        Skizze einer Kreisbahn mit vier farbigen Perlen,
+        die jeweils um 90 Grad versetzt sind und durch
+        einen Torus fliegen.
+    </desc>
+
+    <defs>
+
+        <filter
+            id="schatten"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+        >
+            <feDropShadow
+                dx="5"
+                dy="7"
+                stdDeviation="5"
+                flood-color="#15344d"
+                flood-opacity="0.22"
+            />
+        </filter>
+
+        <marker
+            id="pfeil"
+            markerWidth="10"
+            markerHeight="10"
+            refX="8"
+            refY="5"
+            orient="auto"
+        >
+            <path
+                d="M 0 0 L 10 5 L 0 10 Z"
+                fill="#476270"
+            />
+        </marker>
+
+    </defs>
+
+    <!-- Gelbes Papier des Post-its -->
+    <path
+        d="
+            M 18 14
+            Q 205 4 402 18
+            L 396 485
+            Q 210 514 22 490
+            Z
+        "
+        fill="#fff4bd"
+        stroke="#ddbd62"
+        stroke-width="3"
+        filter="url(#schatten)"
+    />
+
+    <!-- Klebestreifen -->
+    <path
+        d="
+            M 142 6
+            Q 210 0 278 8
+            L 274 38
+            Q 210 31 146 39
+            Z
+        "
+        fill="#dff0ed"
+        fill-opacity="0.85"
+    />
+
+    <!-- Überschrift -->
+    <text
+        x="210"
+        y="69"
+        text-anchor="middle"
+        fill="#15344d"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="25"
+        font-weight="bold"
+    >
+        Reiseplan der vier Perlen
+    </text>
+
+    <text
+        x="210"
+        y="96"
+        text-anchor="middle"
+        fill="#476270"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="15"
+    >
+        Eine gemeinsame Kreisbahn
+    </text>
+
+    <!-- Gestrichelte Kreisbahn -->
+    <circle
+        cx="230"
+        cy="235"
+        r="116"
+        fill="none"
+        stroke="#476270"
+        stroke-width="4"
+        stroke-dasharray="9 8"
+    />
+
+    <!-- Pfeil für die Bewegungsrichtung -->
+    <path
+        d="M 294 138 A 116 116 0 0 1 342 224"
+        fill="none"
+        stroke="#476270"
+        stroke-width="4"
+        marker-end="url(#pfeil)"
+    />
+
+    <!-- Torus an der Stelle, durch die alle Perlen fliegen -->
+    <ellipse
+        cx="114"
+        cy="235"
+        rx="48"
+        ry="25"
+        fill="#f28b31"
+        stroke="#15344d"
+        stroke-width="4"
+    />
+
+    <ellipse
+        cx="114"
+        cy="235"
+        rx="27"
+        ry="12"
+        fill="#fff4bd"
+        stroke="#15344d"
+        stroke-width="3"
+    />
+
+    <text
+        x="62"
+        y="286"
+        fill="#15344d"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="14"
+        font-weight="bold"
+    >
+        Meeresring
+    </text>
+
+    <!-- Cassandra -->
+    <circle
+        cx="346"
+        cy="235"
+        r="17"
+        fill="#2c9998"
+        stroke="#15344d"
+        stroke-width="3"
+    />
+
+    <text
+        x="367"
+        y="241"
+        fill="#15344d"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="17"
+        font-weight="bold"
+    >
+        C
+    </text>
+
+    <!-- Janine -->
+    <circle
+        cx="230"
+        cy="119"
+        r="17"
+        fill="#e6788d"
+        stroke="#15344d"
+        stroke-width="3"
+    />
+
+    <text
+        x="251"
+        y="125"
+        fill="#15344d"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="17"
+        font-weight="bold"
+    >
+        J
+    </text>
+
+    <!-- Klopsi -->
+    <circle
+        cx="114"
+        cy="235"
+        r="15"
+        fill="#e8c99b"
+        stroke="#15344d"
+        stroke-width="3"
+    />
+
+    <text
+        x="103"
+        y="214"
+        fill="#15344d"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="17"
+        font-weight="bold"
+    >
+        K
+    </text>
+
+    <!-- Leo -->
+    <circle
+        cx="230"
+        cy="351"
+        r="17"
+        fill="#15344d"
+        stroke="#d79b3b"
+        stroke-width="4"
+    />
+
+    <text
+        x="251"
+        y="357"
+        fill="#15344d"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="17"
+        font-weight="bold"
+    >
+        L
+    </text>
+
+    <!-- Mathematische Erklärung -->
+    <text
+        x="210"
+        y="401"
+        text-anchor="middle"
+        fill="#15344d"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="20"
+        font-weight="bold"
+    >
+        Immer 90° Abstand
+    </text>
+
+    <text
+        x="210"
+        y="430"
+        text-anchor="middle"
+        fill="#476270"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="18"
+    >
+        φᵢ = φ + i · π/2
+    </text>
+
+    <text
+        x="210"
+        y="460"
+        text-anchor="middle"
+        fill="#15344d"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="15"
+    >
+        So stößt niemand zusammen.
+    </text>
+
+    <text
+        x="210"
+        y="485"
+        text-anchor="middle"
+        fill="#a35328"
+        font-family="'Comic Sans MS', 'Segoe Print', cursive"
+        font-size="14"
+        font-style="italic"
+    >
+        Gemeinsam unterwegs und jede auf ihrem Platz.
+    </text>
+
+</svg>

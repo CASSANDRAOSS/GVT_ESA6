@@ -1,0 +1,759 @@
+/* --------------------------------------------------
+   GRUNDFARBEN DER WEBSEITE
+-------------------------------------------------- */
+
+:root {
+    --dunkelblau: #15344d;
+    --mittelblau: #20516a;
+    --tuerkis: #2c9998;
+    --orange: #f28b31;
+    --rosa: #e6788d;
+    --sand: #e8c99b;
+    --gold: #d79b3b;
+    --hintergrund: #f5f9fc;
+    --text: #243b50;
+    --rahmen: #d5e2ec;
+    --weiss: #ffffff;
+}
+
+
+/* --------------------------------------------------
+   ALLGEMEINE EINSTELLUNGEN
+-------------------------------------------------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--hintergrund);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+button {
+    font: inherit;
+}
+
+a {
+    color: #135f78;
+}
+
+a:hover {
+    color: #a94b18;
+}
+
+a:focus-visible,
+button:focus-visible,
+.sprunglink:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 4px;
+}
+
+
+/* --------------------------------------------------
+   SPRUNGLINK FÜR DIE TASTATURBEDIENUNG
+-------------------------------------------------- */
+
+.sprunglink {
+    position: absolute;
+    top: -80px;
+    left: 20px;
+    z-index: 20;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: white;
+    color: var(--dunkelblau);
+    font-weight: bold;
+}
+
+.sprunglink:focus {
+    top: 16px;
+}
+
+
+/* --------------------------------------------------
+   KOPFBEREICH
+-------------------------------------------------- */
+
+.seitenkopf {
+    min-height: 300px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 88% 85%,
+            transparent 0 90px,
+            rgb(255 255 255 / 10%) 91px 93px,
+            transparent 94px
+        ),
+        linear-gradient(
+            115deg,
+            var(--dunkelblau),
+            var(--mittelblau)
+        );
+    color: white;
+}
+
+.kopfbereich {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: min(1180px, calc(100% - 40px));
+    min-height: 300px;
+    margin: 0 auto;
+    padding: 38px 250px 75px 0;
+}
+
+.kopftext {
+    max-width: 720px;
+}
+
+.kopfbereich h1 {
+    margin: 8px 0 12px;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.12;
+}
+
+.einleitung {
+    max-width: 680px;
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.profilbild {
+    position: absolute;
+    right: 45px;
+    bottom: 38px;
+    width: auto;
+    height: 245px;
+    object-fit: contain;
+    object-position: bottom;
+}
+
+.aufgabenbezeichnung {
+    margin: 0;
+    color: #c5672a;
+    font-size: 0.76rem;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.seitenkopf .aufgabenbezeichnung {
+    color: #a9e2df;
+}
+
+
+/* --------------------------------------------------
+   ALLGEMEINER INHALTSBEREICH
+-------------------------------------------------- */
+
+main {
+    position: relative;
+    width: min(1180px, calc(100% - 40px));
+    margin: -38px auto 80px;
+}
+
+.darstellungsbereich,
+.dokumentation {
+    padding: 32px;
+    border: 1px solid var(--rahmen);
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 10px 28px rgb(21 52 77 / 9%);
+}
+
+.darstellungsbereich {
+    position: relative;
+    border-top: 5px solid var(--tuerkis);
+}
+
+.abschnittskopf {
+    max-width: 800px;
+    margin: 0 auto 26px;
+    text-align: center;
+}
+
+.abschnittskopf h2 {
+    margin: 7px 0;
+    color: var(--dunkelblau);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+.abschnittskopf > p:last-child {
+    margin: 0;
+}
+
+
+/* --------------------------------------------------
+   WEBGL-CANVAS
+-------------------------------------------------- */
+
+.canvasrahmen {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px solid var(--dunkelblau);
+    border-radius: 16px;
+    background:
+        radial-gradient(
+            circle at center,
+            #fffdf7 0%,
+            #edf9f8 100%
+        );
+    box-shadow: 0 8px 24px rgb(21 52 77 / 12%);
+}
+
+.canvasrahmen canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.statusanzeige {
+    width: fit-content;
+    max-width: 100%;
+    margin: 18px auto 25px;
+    padding: 8px 16px;
+    border: 1px solid #a7d9c8;
+    border-radius: 30px;
+    background: #effaf4;
+    color: #196046;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+
+/* --------------------------------------------------
+   STEUERUNG
+-------------------------------------------------- */
+
+.steuerungsraster {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.steuerungskarte {
+    padding: 22px;
+    border: 1px solid var(--rahmen);
+    border-top: 4px solid var(--tuerkis);
+    border-radius: 14px;
+    background: #fbfdff;
+}
+
+.steuerungskarte:nth-child(2) {
+    border-top-color: var(--orange);
+}
+
+.steuerungskarte h3 {
+    margin: 0 0 8px;
+    color: var(--dunkelblau);
+    font-size: 1.2rem;
+}
+
+.steuerungskarte > p {
+    margin: 0 0 16px;
+}
+
+.buttonreihe {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.buttonreihe button {
+    min-height: 46px;
+    padding: 9px 18px;
+    border: 2px solid var(--dunkelblau);
+    border-radius: 9px;
+    background: var(--dunkelblau);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        transform 0.2s;
+}
+
+.buttonreihe button:hover {
+    background: var(--mittelblau);
+    transform: translateY(-2px);
+}
+
+.buttonreihe button:active {
+    transform: translateY(0);
+}
+
+.buttonreihe button[aria-pressed="true"] {
+    border-color: var(--orange);
+}
+
+.wertanzeige {
+    width: fit-content;
+    max-width: 100%;
+    margin: 16px 0 0;
+    padding: 6px 12px;
+    border: 1px solid #b8d9dc;
+    border-radius: 20px;
+    background: #edf8f8;
+    color: var(--dunkelblau);
+    font-size: 0.88rem;
+    font-weight: bold;
+}
+
+
+/* --------------------------------------------------
+   TASTATURHINWEISE
+-------------------------------------------------- */
+
+.bedienhinweise {
+    max-width: 1000px;
+    margin: 20px auto 0;
+    padding: 20px 24px;
+    border-left: 5px solid var(--orange);
+    border-radius: 10px;
+    background: #fff9ef;
+}
+
+.bedienhinweise h3 {
+    margin: 0 0 10px;
+    color: var(--dunkelblau);
+}
+
+.bedienhinweise ul {
+    margin: 0;
+    padding-left: 22px;
+}
+
+.bedienhinweise li {
+    margin-bottom: 7px;
+}
+
+.bedienhinweise p {
+    margin: 13px 0 0;
+}
+
+kbd {
+    display: inline-block;
+    min-width: 28px;
+    padding: 1px 7px;
+    border: 1px solid #b7c8d3;
+    border-bottom-width: 3px;
+    border-radius: 5px;
+    background: white;
+    color: var(--dunkelblau);
+    font-family: inherit;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* --------------------------------------------------
+   DIE VIER ERINNERUNGSPERLEN
+-------------------------------------------------- */
+
+.perlenbereich {
+    max-width: 1000px;
+    margin: 42px auto 0;
+    padding-top: 32px;
+    border-top: 1px solid var(--rahmen);
+}
+
+.perlenraster {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.perlenkarte {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid var(--rahmen);
+    border-radius: 12px;
+    background: #fbfdff;
+}
+
+.perlenkarte h3 {
+    margin: 0 0 5px;
+    color: var(--dunkelblau);
+    font-size: 1rem;
+}
+
+.perlenkarte p {
+    margin: 0;
+    font-size: 0.87rem;
+}
+
+.farbpunkt {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgb(21 52 77 / 20%);
+}
+
+.perle-cassandra {
+    border-top: 4px solid var(--tuerkis);
+}
+
+.perle-cassandra .farbpunkt {
+    background: var(--tuerkis);
+}
+
+.perle-janine {
+    border-top: 4px solid var(--rosa);
+}
+
+.perle-janine .farbpunkt {
+    background: var(--rosa);
+}
+
+.perle-klopsi {
+    border-top: 4px solid var(--sand);
+}
+
+.perle-klopsi .farbpunkt {
+    background: var(--sand);
+}
+
+.perle-leo {
+    border-top: 4px solid var(--gold);
+}
+
+.perle-leo .farbpunkt {
+    background:
+        linear-gradient(
+            135deg,
+            var(--dunkelblau) 0 55%,
+            var(--gold) 55% 100%
+        );
+}
+
+
+/* --------------------------------------------------
+   DOKUMENTATION
+-------------------------------------------------- */
+
+.dokumentation {
+    margin-top: 42px;
+}
+
+.dokumentationsraster {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.dokumentationskarte {
+    padding: 19px 21px;
+    border: 1px solid var(--rahmen);
+    border-top: 3px solid var(--tuerkis);
+    border-radius: 11px;
+    background: #fbfdff;
+}
+
+.dokumentationskarte:nth-child(2) {
+    border-top-color: var(--orange);
+}
+
+.dokumentationskarte:nth-child(3) {
+    border-top-color: var(--rosa);
+}
+
+.dokumentationskarte:nth-child(4) {
+    border-top-color: var(--dunkelblau);
+}
+
+.dokumentationskarte:nth-child(5) {
+    border-top-color: var(--gold);
+}
+
+.dokumentationskarte:nth-child(6) {
+    border-top-color: var(--tuerkis);
+}
+
+.dokumentationskarte h3 {
+    margin: 0 0 10px;
+    color: var(--dunkelblau);
+    font-size: 1.05rem;
+}
+
+.dokumentationskarte p {
+    margin: 0 0 11px;
+    font-size: 0.94rem;
+}
+
+.dokumentationskarte p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* --------------------------------------------------
+   ENTSTEHUNGSPROZESS UND SLIDESHOW
+-------------------------------------------------- */
+
+.entstehung {
+    margin-top: 42px;
+}
+
+.slideshow {
+    width: min(760px, 100%);
+    margin: 0 auto;
+    padding: 18px;
+    border: 1px solid var(--rahmen);
+    border-top: 4px solid var(--tuerkis);
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 8px 22px rgb(21 52 77 / 8%);
+    text-align: center;
+}
+
+.slideshow img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+}
+
+.schrittzaehler {
+    margin: 14px 0 4px;
+    color: #247b7b;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.schrittbeschreibung {
+    margin: 0 0 16px;
+}
+
+.schrittpunkte {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px 0 20px;
+}
+
+.schrittpunkt {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 2px solid var(--dunkelblau);
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+.schrittpunkt:hover {
+    background: var(--tuerkis);
+}
+
+.schrittpunkt[aria-current="true"] {
+    background: var(--dunkelblau);
+    transform: scale(1.15);
+}
+
+.schrittpunkt:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 4px;
+}
+
+.slideshow-steuerung {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.slideshow-steuerung button {
+    min-height: 44px;
+    padding: 8px 18px;
+    border: 2px solid var(--dunkelblau);
+    border-radius: 8px;
+    background: white;
+    color: var(--dunkelblau);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.slideshow-steuerung button:hover {
+    background: var(--dunkelblau);
+    color: white;
+}
+
+.slideshow-steuerung button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+
+/* --------------------------------------------------
+   FUSSBEREICH
+-------------------------------------------------- */
+
+.seitenfuss {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding:
+        18px
+        max(20px, calc((100% - 1180px) / 2));
+    background: var(--dunkelblau);
+    color: white;
+    font-size: 0.85rem;
+}
+
+.seitenfuss p {
+    margin: 0;
+}
+
+
+/* --------------------------------------------------
+   POST-IT MIT DER BEWEGUNGSBAHN
+-------------------------------------------------- */
+
+.reiseplan-postit {
+    position: absolute;
+    top: 55px;
+    right: -100px;
+    z-index: 3;
+    width: 205px;
+    margin: 0;
+    transform: rotate(3deg);
+    transition:
+        transform 0.25s,
+        filter 0.25s;
+}
+
+.reiseplan-postit:hover {
+    transform:
+        rotate(1deg)
+        scale(1.04);
+    filter: brightness(1.02);
+}
+
+.reiseplan-postit img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* --------------------------------------------------
+   MITTLERE BILDSCHIRME
+-------------------------------------------------- */
+
+@media (max-width: 950px) {
+
+    .perlenraster {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .reiseplan-postit {
+    position: static;
+    width: min(230px, 70%);
+    margin: 0 auto 24px;
+    transform: rotate(2deg);
+}
+
+}
+
+
+/* --------------------------------------------------
+   KLEINE BILDSCHIRME
+-------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .kopfbereich {
+        min-height: 330px;
+        padding: 28px 115px 45px 0;
+    }
+
+    .profilbild {
+        right: 0;
+        bottom: 30px;
+        height: 175px;
+    }
+
+    main {
+        width: min(100% - 24px, 1180px);
+        margin-top: -24px;
+    }
+
+    .darstellungsbereich,
+    .dokumentation {
+        padding: 22px 15px;
+    }
+
+    .steuerungsraster,
+    .dokumentationsraster,
+    .perlenraster {
+        grid-template-columns: 1fr;
+    }
+
+    .buttonreihe {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .buttonreihe button {
+        width: 100%;
+    }
+
+    .bedienhinweise {
+        padding: 18px;
+    }
+
+    .seitenfuss {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+}
+
+
+/* --------------------------------------------------
+   SEHR KLEINE BILDSCHIRME
+-------------------------------------------------- */
+
+@media (max-width: 430px) {
+
+    .kopfbereich {
+        padding-right: 85px;
+    }
+
+    .profilbild {
+        height: 145px;
+    }
+
+    .kopfbereich h1 {
+        font-size: 1.8rem;
+    }
+
+    .slideshow {
+        padding: 12px;
+    }
+
+    .slideshow-steuerung button {
+        padding: 8px 12px;
+    }
+
+}

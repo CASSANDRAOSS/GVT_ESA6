@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Vier farbige Kugeln bewegen sich mit WebGL auf einer Kreisbahn durch einen animierten Torus."
+    >
+
+    <title>Objekte bewegen – Vier Perlen auf Reisen</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="sprunglink" href="#hauptinhalt">
+        Direkt zum Inhalt
+    </a>
+
+    <header class="seitenkopf">
+
+        <div class="kopfbereich">
+
+            <div class="kopftext">
+
+                <p class="aufgabenbezeichnung">
+                    Einsendeaufgabe 6
+                </p>
+
+                <h1>Vier Perlen auf Reisen</h1>
+
+                <p class="einleitung">
+                    Vier kleine Erinnerungsperlen bewegen sich
+                    gemeinsam durch einen großen Unterwasserring.
+                    Jede Perle hat ihre eigene Farbe und Bedeutung.
+                </p>
+
+            </div>
+
+            <img
+                class="profilbild"
+                src="ich2.png"
+                alt="Comicfigur von Cassandra Ludwig, die zur Begrüßung winkt"
+                width="174"
+                height="340"
+            >
+
+        </div>
+
+    </header>
+
+    <main id="hauptinhalt">
+
+        <section
+            class="darstellungsbereich"
+            aria-labelledby="szeneTitel"
+        >
+
+            <div class="abschnittskopf">
+
+                <p class="aufgabenbezeichnung">
+                    Bewegte WebGL-Szene
+                </p>
+
+                <h2 id="szeneTitel">
+                    Die Reise durch den Meeresring
+                </h2>
+
+                <p>
+                    Die vier Perlen bewegen sich auf einer
+                    gemeinsamen Kreisbahn. Dabei fliegen sie
+                    nacheinander durch die Öffnung des Torus,
+                    ohne sich gegenseitig zu berühren.
+                </p>
+
+            </div>
+
+            <aside
+            class="reiseplan-postit"
+            aria-label="Skizze zur Kreisbahn der vier Perlen"
+            >
+                <img
+                    src="reiseplan.svg"
+                    alt="Handgezeichnete Skizze der Kreisbahn mit vier um jeweils 90 Grad versetzten Erinnerungsperlen"
+                >
+            </aside>
+
+            <div class="canvasrahmen">
+
+                <canvas
+                    id="webglCanvas"
+                    width="1000"
+                    height="650"
+                    aria-label="WebGL-Unterwasserszene mit vier bewegten Perlen, einem Torus und einer Gitterebene"
+                >
+                    Dein Browser unterstützt das benötigte
+                    Canvas-Element leider nicht.
+                </canvas>
+
+            </div>
+
+            <p
+                id="webglStatus"
+                class="statusanzeige"
+                role="status"
+                aria-live="polite"
+            >
+                WebGL wird vorbereitet …
+            </p>
+
+            <div class="steuerungsraster">
+
+                <section
+                    class="steuerungskarte"
+                    aria-labelledby="bewegungTitel"
+                >
+
+                    <h3 id="bewegungTitel">
+                        Perlen bewegen
+                    </h3>
+
+                    <p>
+                        Bewege alle vier Perlen schrittweise oder
+                        starte die automatische Animation.
+                    </p>
+
+                    <div class="buttonreihe">
+
+                        <button
+                            id="schrittButton"
+                            type="button"
+                        >
+                            Einen Schritt weiter
+                        </button>
+
+                        <button
+                            id="automatikButton"
+                            type="button"
+                            aria-pressed="false"
+                        >
+                            Bewegung starten
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="bewegungsAnzeige"
+                        class="wertanzeige"
+                        aria-live="polite"
+                    >
+                        Bewegung wird vorbereitet …
+                    </p>
+
+                </section>
+
+                <section
+                    class="steuerungskarte"
+                    aria-labelledby="torusTitel"
+                >
+
+                    <h3 id="torusTitel">
+                        Der Meeresring
+                    </h3>
+
+                    <p>
+                        Der Torus dreht sich synchron mit den
+                        Perlen um mehrere Achsen. Dadurch bewegt
+                        er sich nicht nur wie ein Autoreifen.
+                    </p>
+
+                    <div class="buttonreihe">
+
+                        <button
+                            id="torusButton"
+                            type="button"
+                            aria-pressed="true"
+                        >
+                            Torusdrehung anhalten
+                        </button>
+
+                        <button
+                            id="zuruecksetzenButton"
+                            type="button"
+                        >
+                            Zurücksetzen
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="torusAnzeige"
+                        class="wertanzeige"
+                        aria-live="polite"
+                    >
+                        Torusdrehung ist eingeschaltet.
+                    </p>
+
+                </section>
+
+            </div>
+
+            <aside
+                class="bedienhinweise"
+                aria-labelledby="bedienungTitel"
+            >
+
+                <h3 id="bedienungTitel">
+                    Bedienung
+                </h3>
+
+                <ul>
+
+                    <li>
+                        <kbd>K</kbd> bewegt alle vier Perlen
+                        einen Schritt weiter.
+                    </li>
+
+                    <li>
+                        <kbd>A</kbd> startet oder stoppt die
+                        automatische Bewegung.
+                    </li>
+
+                    <li>
+                        <kbd>T</kbd> hält die Drehung des Torus
+                        an oder schaltet sie wieder ein.
+                    </li>
+
+                    <li>
+                        <kbd>R</kbd> setzt die Szene auf ihren
+                        Ausgangszustand zurück.
+                    </li>
+
+                </ul>
+
+                <p>
+                    Alle Funktionen lassen sich auch über die
+                    Buttons bedienen.
+                </p>
+
+            </aside>
+
+            <section
+                class="perlenbereich"
+                aria-labelledby="perlenTitel"
+            >
+
+                <div class="abschnittskopf">
+
+                    <p class="aufgabenbezeichnung">
+                        Persönliche Farbwahl
+                    </p>
+
+                    <h2 id="perlenTitel">
+                        Meine vier Erinnerungsperlen
+                    </h2>
+
+                    <p>
+                        Die vier Kugeln haben nicht nur
+                        unterschiedliche Farben. Jede von ihnen
+                        steht für jemanden, der zu meinem Leben
+                        und damit auch zu meiner kleinen
+                        Unterwasserwelt gehört.
+                    </p>
+
+                </div>
+
+                <div class="perlenraster">
+
+                    <article class="perlenkarte perle-cassandra">
+
+                        <span
+                            class="farbpunkt"
+                            aria-hidden="true"
+                        ></span>
+
+                        <div>
+                            <h3>Cassandra</h3>
+
+                            <p>
+                                Türkis wie das Wasser und das
+                                durchgehende Farbschema meiner
+                                bisherigen Aufgaben.
+                            </p>
+                        </div>
+
+                    </article>
+
+                    <article class="perlenkarte perle-janine">
+
+                        <span
+                            class="farbpunkt"
+                            aria-hidden="true"
+                        ></span>
+
+                        <div>
+                            <h3>Janine</h3>
+
+                            <p>
+                                Rosa als warme und freundliche
+                                Farbe innerhalb der gemeinsamen
+                                Kreisbahn.
+                            </p>
+                        </div>
+
+                    </article>
+
+                    <article class="perlenkarte perle-klopsi">
+
+                        <span
+                            class="farbpunkt"
+                            aria-hidden="true"
+                        ></span>
+
+                        <div>
+                            <h3>Klopsi</h3>
+
+                            <p>
+                                Sandfarben passend zum
+                                Meeresboden und zu ihrem
+                                hellen Fell.
+                            </p>
+                        </div>
+
+                    </article>
+
+                    <article class="perlenkarte perle-leo">
+
+                        <span
+                            class="farbpunkt"
+                            aria-hidden="true"
+                        ></span>
+
+                        <div>
+                            <h3>Leo</h3>
+
+                            <p>
+                                Dunkelblau mit einem warmen
+                                Goldton als kleine Erinnerung,
+                                die weiterhin mit uns reist.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </section>
+
+        <section
+            class="dokumentation"
+            aria-labelledby="dokumentationTitel"
+        >
+
+            <div class="abschnittskopf">
+
+                <p class="aufgabenbezeichnung">
+                    Informationen zur Umsetzung
+                </p>
+
+                <h2 id="dokumentationTitel">
+                    Dokumentation
+                </h2>
+
+                <p>
+                    Wie die Kreisbahnen, die Objektbewegung und
+                    die synchrone Drehung entstanden sind.
+                </p>
+
+            </div>
+
+            <div class="dokumentationsraster">
+
+                <article class="dokumentationskarte">
+
+                    <h3>Idee und Gestaltung</h3>
+
+                    <p>
+                        Für diese Aufgabe wollte ich meine
+                        Unterwasserwelt weiterführen. Aus den
+                        vier vorgegebenen Kugeln wurden deshalb
+                        vier Erinnerungsperlen, die gemeinsam
+                        durch einen großen Meeresring fliegen.
+                    </p>
+
+                    <p>
+                        Die unterschiedlichen Farben machen die
+                        Kugeln gut erkennbar und geben der
+                        technischen Aufgabe gleichzeitig eine
+                        persönliche Bedeutung.
+                    </p>
+
+                </article>
+
+                <article class="dokumentationskarte">
+
+                    <h3>Bewegung der Perlen</h3>
+
+                    <p>
+                        Alle Perlen bewegen sich auf derselben
+                        Kreisbahn. Ihre Positionen werden mit
+                        Sinus und Kosinus aus einem gemeinsamen
+                        Winkel berechnet.
+                    </p>
+
+                    <p>
+                        Jede Perle beginnt um 90 Grad versetzt.
+                        Dadurch bleiben die Abstände während der
+                        gesamten Bewegung gleich und die Kugeln
+                        berühren sich nicht.
+                    </p>
+
+                </article>
+
+                <article class="dokumentationskarte">
+
+                    <h3>Objekt- und Kamerabewegung</h3>
+
+                    <p>
+                        In Aufgabe 5 wurde die Kamera um eine
+                        feste Szene bewegt. Diesmal bleibt die
+                        Kamera an ihrer Position, während sich
+                        die Kugeln innerhalb der Szene bewegen.
+                    </p>
+
+                    <p>
+                        Dafür erhält jede Kugel eine eigene
+                        Modelltransformation. Die berechnete
+                        Position wird auf die jeweilige
+                        Model-Matrix übertragen.
+                    </p>
+
+                </article>
+
+                <article class="dokumentationskarte">
+
+                    <h3>Torus und Erweiterung</h3>
+
+                    <p>
+                        Der Torus dreht sich synchron zur
+                        Bewegung der Perlen. Dabei wird er um
+                        mehr als eine Achse gedreht und bewegt
+                        sich deshalb nicht nur wie ein
+                        Autoreifen.
+                    </p>
+
+                    <p>
+                        Die Öffnung des Torus und die Größe der
+                        Perlen sind so gewählt, dass die Kugeln
+                        den Ring während ihrer Bewegung nicht
+                        berühren.
+                    </p>
+
+                </article>
+
+                <article class="dokumentationskarte">
+
+                    <h3>Quellen und Prüfung</h3>
+
+                    <p>
+                        Grundlage für die Modelltransformationen
+                        und die Bewegung der Objekte war die
+                        Lerneinheit TFM des Kursmaterials.
+                    </p>
+
+                    <p>
+                        Ergänzend habe ich die Erklärung zur
+                        <a
+                            href="https://webglfundamentals.org/webgl/lessons/webgl-2d-rotation.html"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Rotation bei WebGL Fundamentals
+                        </a>
+                        verwendet.
+                    </p>
+
+                    <p>
+                        Die Bedienung mit Buttons und Tastatur,
+                        die automatische Animation und die
+                        Torusdrehung wurden in Google Chrome
+                        getestet. Zusätzlich wurde die
+                        Entwicklerkonsole auf Fehlermeldungen
+                        geprüft.
+                    </p>
+
+                </article>
+
+                <article class="dokumentationskarte">
+
+                    <h3>Technische Umsetzung</h3>
+
+                    <p>
+                        Die Szene wurde mit HTML, CSS,
+                        JavaScript und WebGL umgesetzt.
+                        Meeresboden, Torus und Kugeln werden
+                        als einzelne Modelle verwaltet.
+                    </p>
+
+                    <p>
+                        Die Model-Matrizen enthalten Skalierung,
+                        Rotation und Verschiebung. Anschließend
+                        werden sie mit der View- und
+                        Projektionsmatrix kombiniert und im
+                        Shader auf die Vertices angewendet.
+                    </p>
+
+                    <p>
+                        Die Aufgabe baut auf den technischen Grundlagen 
+                        meiner vorherigen Einsendeaufgaben auf. Vorhandene 
+                        Funktionen für WebGL, Shader, Kamera, Matrizen und 
+                        die Kugelgeometrie habe ich erneut verwendet und für 
+                        diese Szene angepasst.
+
+                        Neu hinzugekommen sind die getrennten Model-Matrizen 
+                        der vier Perlen, ihre um jeweils 90 Grad versetzten 
+                        Kreisbahnen, die automatische Animation, die Gitterebene 
+                        und die synchrone Drehung des Torus.
+
+                        Ich habe bewusst keine zusätzliche 3D-Bibliothek eingesetzt. 
+                        Deshalb werden Geometrien, Matrizen und Transformationen direkt 
+                        im JavaScript berechnet. Zusammen mit den ausführlichen 
+                        Kommentaren und der gut lesbaren Formatierung fällt die Datei 
+                        entsprechend umfangreicher aus.
+
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section
+            class="entstehung"
+            aria-labelledby="entstehungTitel"
+        >
+
+            <div class="abschnittskopf">
+
+                <p class="aufgabenbezeichnung">
+                    Entstehungsprozess
+                </p>
+
+                <h2 id="entstehungTitel">
+                    Schritt für Schritt zur fertigen Reise
+                </h2>
+
+                <p>
+                    Die Screenshots zeigen, wie aus den ersten
+                    Grundformen die fertige bewegte Szene
+                    entstanden ist.
+                </p>
+
+            </div>
+
+            <div class="slideshow">
+
+                <img
+                    id="schrittBild"
+                    src="fortschritt/schritt_01.png"
+                    alt="Erster Zwischenstand der WebGL-Szene"
+                >
+
+                <p
+                    id="schrittZaehler"
+                    class="schrittzaehler"
+                    aria-live="polite"
+                >
+                    Bild 1 von 4
+                </p>
+
+                <p
+                    id="schrittBeschreibung"
+                    class="schrittbeschreibung"
+                >
+                    Im ersten Schritt werden die Gitterebene
+                    und der Torus aufgebaut.
+                </p>
+
+                <div
+                    id="schrittpunkte"
+                    class="schrittpunkte"
+                    aria-label="Entwicklungsschritte"
+                ></div>
+
+                <div class="slideshow-steuerung">
+
+                    <button
+                        id="schrittZurueck"
+                        type="button"
+                        disabled
+                    >
+                        Zurück
+                    </button>
+
+                    <button
+                        id="schrittWeiter"
+                        type="button"
+                    >
+                        Weiter
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="seitenfuss">
+
+        <p>
+            EA 6 · Objekte bewegen – fliegende Kugeln
+        </p>
+
+        <p>
+            Erstellt von Cassandra Ludwig
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
